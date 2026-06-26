@@ -649,7 +649,7 @@ function cardHtml(l) {
   const phone = l.phone.replace(/\s/g,'');
   const priceText = l.price_unit === 'Kelishamiz' ? 'Kelishamiz' : `${esc(l.price)} ${esc(l.price_unit||"so'm")}`;
   return `
-    <div class="listing-card" onclick="openDetail(${l.id})">
+    <div class="listing-card" onclick="openDetail('${l.id}')">
       <div class="card-img">
         ${l.image ? `<img src="${l.image}" alt="" loading="lazy" onerror="this.style.display='none';this.nextSibling.style.display='flex'">` : ''}
         <span class="emoji" style="${l.image?'display:none':''}">${cat.em}</span>
@@ -697,7 +697,7 @@ async function openDetail(id) {
           <div class="d-row">📅 <span>Sana:</span> <strong>${fmtDate(l.created_at)}</strong></div>
         </div>
         ${l.description ? `<div class="d-desc">${esc(l.description)}</div>` : ''}
-        ${isOwn ? `<button class="d-own-del" onclick="delListing(${l.id})">🗑️ Bu e'lonni o'chirish</button>` : ''}
+        ${isOwn ? `<button class="d-own-del" onclick="delListing('${l.id}')">🗑️ Bu e'lonni o'chirish</button>` : ''}
       </div>
       <div class="contact-bar">
         <a class="btn-call" href="tel:${phone}">📞 ${esc(l.phone)}</a>
@@ -836,12 +836,12 @@ function renderMine() {
         <div class="li-img">
           ${l.image ? `<img src="${l.image}" alt="" onerror="this.style.display='none'">` : cat.em}
         </div>
-        <div class="li-info" onclick="openDetail(${l.id})">
+        <div class="li-info" onclick="openDetail('${l.id}')">
           <div class="li-title">${esc(l.title)}</div>
           <div class="li-meta">${esc(l.location||'—')} · ${fmtDate(l.created_at)}</div>
           <div class="li-price">${price}</div>
         </div>
-        <button class="btn-del" onclick="delListing(${l.id})">🗑️</button>
+        <button class="btn-del" onclick="delListing('${l.id}')">🗑️</button>
       </div>`;
   }).join('');
 }
